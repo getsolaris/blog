@@ -12,14 +12,15 @@ const CONFIG = {
   },
   projects: [
     {
+      icon: 'AiOutlineTrophy',
       name: `Elastic Contributor Silver`,
       href: "https://www.credential.net/20fc49df-8502-4bbe-9c1f-62a9fe84c8b0#acc.7EuzYQWq",
     },
   ],
   // blog setting (required)
   blog: {
-    title: "getsolaris",
-    description: "",
+    title: "getsolaris blog",
+    description: "이런 저런 생각을 적어두는 블로그",
     scheme: "system", // 'light' | 'dark' | 'system'
   },
 
