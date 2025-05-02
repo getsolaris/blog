@@ -58,5 +58,7 @@ const ThemeToggle: React.FC<Props> = () => {
 export default ThemeToggle
 
 const StyledWrapper = styled.div`
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 `

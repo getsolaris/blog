@@ -12,7 +12,7 @@ import ContactCard from "./ContactCard"
 import PostList from "./PostList"
 import PinnedPosts from "./PostList/PinnedPosts"
 
-const HEADER_HEIGHT = 73
+const HEADER_HEIGHT = 100
 
 type Props = {}
 
