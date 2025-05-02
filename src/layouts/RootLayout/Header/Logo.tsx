@@ -12,4 +12,8 @@ const Logo = () => {
 
 export default Logo
 
-const StyledWrapper = styled(Link)``
+const StyledWrapper = styled(Link)`
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.gray12};
+`

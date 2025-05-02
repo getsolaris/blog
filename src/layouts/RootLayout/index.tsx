@@ -79,7 +79,7 @@ const RootLayout = ({ children }: Props) => {
       <Scripts />
       {/* // TODO: replace react query */}
       {/* {metaConfig.type !== "Paper" && <Header />} */}
-      <Header fullWidth={false} readingProgress={router.asPath.startsWith("/about") ? 0 : progress} />
+      <Header fullWidth={false} readingProgress={router.asPath === "/" || router.asPath.startsWith("/about") ? 0 : progress} />
       <StyledMain>{children}</StyledMain>
     </ThemeProvider>
   )
