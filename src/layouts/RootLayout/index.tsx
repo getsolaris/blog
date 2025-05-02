@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react"
+import React, { ReactNode, useEffect, useRef, useState } from "react"
 import { ThemeProvider } from "./ThemeProvider"
 import useScheme from "src/hooks/useScheme"
 import Header from "./Header"
@@ -40,15 +40,38 @@ import 'prismjs/components/prism-wasm.js'
 import 'prismjs/components/prism-yaml.js'
 import "prismjs/components/prism-go.js"
 
+import useThrottle from "src/hooks/useThrottle"
+import { useRouter } from "next/router"
+
 type Props = {
   children: ReactNode
 }
 
 const RootLayout = ({ children }: Props) => {
+  const router = useRouter();
+  
   const [scheme] = useScheme()
   useGtagEffect()
   useEffect(() => {
     Prism.highlightAll();
+  }, []);
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      const winHeight = window.innerHeight;
+      const total = docHeight - winHeight;
+      const percent = total > 0 ? Math.min(100, Math.max(0, (scrollTop / total) * 100)) : 0;
+      setProgress(percent);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // 초기값 설정
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -56,7 +79,7 @@ const RootLayout = ({ children }: Props) => {
       <Scripts />
       {/* // TODO: replace react query */}
       {/* {metaConfig.type !== "Paper" && <Header />} */}
-      <Header fullWidth={false} />
+      <Header fullWidth={false} readingProgress={router.asPath.startsWith("/about") ? 0 : progress} />
       <StyledMain>{children}</StyledMain>
     </ThemeProvider>
   )
