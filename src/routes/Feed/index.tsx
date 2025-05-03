@@ -27,7 +27,12 @@ const Feed: React.FC<Props> = () => {
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         }}
       >
-        <TagList />
+        <ProfileCard />
+        <ServiceCard />
+        <ContactCard />
+        <div className="footer">
+          <Footer />
+        </div>
       </div>
       <div className="mid">
         <MobileProfileCard />
@@ -48,12 +53,7 @@ const Feed: React.FC<Props> = () => {
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         }}
       >
-        <ProfileCard />
-        <ServiceCard />
-        <ContactCard />
-        <div className="footer">
-          <Footer />
-        </div>
+        <TagList />
       </div>
     </StyledWrapper>
   )
@@ -73,7 +73,7 @@ const StyledWrapper = styled.div`
     padding: 0.5rem 0;
   }
 
-  > .lt {
+  > .rt {
     display: none;
     overflow: scroll;
     position: sticky;
@@ -114,7 +114,7 @@ const StyledWrapper = styled.div`
     }
   }
 
-  > .rt {
+  > .lt {
     scrollbar-width: none;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
