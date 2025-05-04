@@ -8,12 +8,7 @@ const CustomError: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div className="wrapper">
-        <div className="top">
-          <div>4</div>
-          <div>0</div>
-          <div>4</div>
-        </div>
-        <div className="text">Post not found</div>
+        <div className="text">페이지를 찾을 수 없습니다.</div>
       </div>
     </StyledWrapper>
   )
