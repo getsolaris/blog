@@ -113,6 +113,7 @@ const StyledWrapper = styled.div`
       }
     }
     .thumbnail {
+      display: none;
       overflow: hidden;
       position: relative;
       margin-bottom: 1.75rem;
