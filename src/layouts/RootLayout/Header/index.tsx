@@ -3,13 +3,15 @@ import Logo from "./Logo"
 import ThemeToggle from "./ThemeToggle"
 import styled from "@emotion/styled"
 import { zIndexes } from "src/styles/zIndexes"
+import { getColorClassByName } from "src/components/Category"
 
 type Props = {
   fullWidth?: boolean
   readingProgress: number
+  progressColor?: string
 }
 
-const Header: React.FC<Props> = ({ fullWidth, readingProgress }) => {
+const Header: React.FC<Props> = ({ fullWidth, readingProgress, progressColor }) => {
   return (
     <StyledWrapper>
       <HeaderWrapper>
@@ -21,7 +23,7 @@ const Header: React.FC<Props> = ({ fullWidth, readingProgress }) => {
           </div>
         </div>
       </HeaderWrapper>
-      <ReadingProgress readingProgress={readingProgress} />
+      <ReadingProgress readingProgress={readingProgress} progressColor={progressColor} />
     </StyledWrapper>
   )
 }
@@ -88,11 +90,10 @@ const HeaderWrapper = styled.div`
   }
 `
 
-
-const ReadingProgress = styled.div<Props>`
+const ReadingProgress = styled.div<{ readingProgress: number; progressColor?: string }>`
   width: ${({ readingProgress }) => readingProgress + "%"};
   height: 0.2rem;
-  background-color: rgb(186 230 253);
+  background-color: ${({ progressColor }) => progressColor || "rgb(186 230 253)"};
   // opacity: 0.6;
   transition: width 0.4s ease-out;
 `

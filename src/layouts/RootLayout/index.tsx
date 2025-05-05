@@ -42,6 +42,8 @@ import "prismjs/components/prism-go.js"
 
 import useThrottle from "src/hooks/useThrottle"
 import { useRouter } from "next/router"
+import { getColorClassByName } from "src/components/Category"
+import usePostQuery from "src/hooks/usePostQuery"
 
 type Props = {
   children: ReactNode
@@ -57,6 +59,16 @@ const RootLayout = ({ children }: Props) => {
   }, []);
 
   const [progress, setProgress] = useState(0);
+
+  // 항상 훅 호출
+  const post = usePostQuery();
+  let progressColor: string | undefined = undefined;
+  let isPostDetail = false;
+  if (/^\/[a-zA-Z0-9-_]+$/.test(router.asPath) && !["/about", "/feed"].includes(router.asPath)) {
+    isPostDetail = true;
+    const category = post?.category?.[0];
+    if (category) progressColor = getColorClassByName(category);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +91,11 @@ const RootLayout = ({ children }: Props) => {
       <Scripts />
       {/* // TODO: replace react query */}
       {/* {metaConfig.type !== "Paper" && <Header />} */}
-      <Header fullWidth={false} readingProgress={router.asPath === "/" || router.asPath.startsWith("/about") ? 0 : progress} />
+      <Header
+        fullWidth={false}
+        readingProgress={isPostDetail ? progress : 0}
+        progressColor={progressColor}
+      />
       <StyledMain>{children}</StyledMain>
     </ThemeProvider>
   )
