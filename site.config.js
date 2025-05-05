@@ -16,6 +16,11 @@ const CONFIG = {
       name: `Elastic Contributor Silver`,
       href: "https://www.credential.net/20fc49df-8502-4bbe-9c1f-62a9fe84c8b0#acc.7EuzYQWq",
     },
+    {
+      icon: 'AiOutlineNodeIndex',
+      name: `Elasticsearch Index Visualizer`,
+      href: "https://es-index-visualizer.getsolaris.kr",
+    },
   ],
   // blog setting (required)
   blog: {
