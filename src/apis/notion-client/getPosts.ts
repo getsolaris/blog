@@ -22,7 +22,7 @@ export const getPosts = async () => {
   const block = response.block
   const schema = (collection as any)?.schema
 
-  const rawMetadata = block[id].value
+  const rawMetadata = block[id].value as any
 
   // Check Type
   if (
