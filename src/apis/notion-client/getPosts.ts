@@ -20,7 +20,7 @@ export const getPosts = async () => {
   id = idToUuid(id)
   const collection = Object.values(response.collection)[0]?.value
   const block = response.block
-  const schema = collection?.schema
+  const schema = (collection as any)?.schema
 
   const rawMetadata = block[id].value
 
